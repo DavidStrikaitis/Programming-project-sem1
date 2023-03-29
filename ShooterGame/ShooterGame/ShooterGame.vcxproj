@@ -22,6 +22,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bulletManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="gameProp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
@@ -29,6 +30,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bulletManager.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="gameProp.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>

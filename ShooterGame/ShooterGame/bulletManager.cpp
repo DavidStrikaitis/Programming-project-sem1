@@ -42,7 +42,8 @@ void bulletManager::moveBullets()
 {
 	for (int i = 0; i < bulletAmount; i++)
 	{
-		bullets[i].moveBullet();
+		if (bullets[i].getActive())
+			bullets[i].moveBullet();
 	}
 }
 

@@ -30,8 +30,8 @@ void Bullet::render(sf::RenderWindow& t_window)
 
 void Bullet::moveBullet()
 {
-	m_location += m_displacement;
-	m_body.setPosition(m_location);
+		m_location += m_displacement;
+		m_body.setPosition(m_location);
 	if (m_location.x < 0 || m_location.y < 0
 		|| m_location.x > SCREEN_WIDTH || m_location.y > SCREEN_HEIGHT)
 	{
