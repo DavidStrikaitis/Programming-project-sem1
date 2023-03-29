@@ -76,6 +76,25 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (sf::Event::MouseMoved == newEvent.type)
+		{
+			playerOne.fireWeapon(newEvent, m_window);
+		}
+		if (sf::Event::MouseButtonReleased == newEvent.type)
+		{
+			if (sf::Mouse::Left == newEvent.mouseButton.button)
+			{
+				m_shooting = false;
+			}
+		}
+		if (sf::Event::MouseButtonPressed == newEvent.type)
+		{
+			if (sf::Mouse::Left == newEvent.mouseButton.button)
+			{
+				m_shooting = true;
+			}
+		}
+
 	}
 }
 
@@ -90,7 +109,6 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
-	
 }
 
 /// <summary>
@@ -104,6 +122,8 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 	playerOne.movePlayer(); // called here for smoother movement
+	m_bulletManager.moveBullets();
+	shooting();
 }
 
 /// <summary>
@@ -114,6 +134,7 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	m_window.draw(m_backgroundSprite);
 	m_window.draw(m_welcomeMessage);
+	m_bulletManager.render(m_window);
 	playerOne.render(m_window);
 	m_window.display();
 }
@@ -148,4 +169,17 @@ void Game::setupFontAndText()
 	m_welcomeMessage.setFillColor(sf::Color::Black);
 	m_welcomeMessage.setOutlineThickness(3.0f);
 
+}
+
+void Game::shooting()
+{
+	if (m_cooldownTime <= m_shootCooldown)
+	{
+		if (m_shooting)
+		{
+			m_bulletManager.spawnNewBullet(playerOne);
+			m_shootCooldown = 0;
+		}
+	}
+	m_shootCooldown++;
 }

@@ -101,3 +101,18 @@ void player::setupPlayer()
 	m_sprite.setTextureRect(sf::IntRect(12, 13, 57, 66));
 	m_sprite.setPosition(m_location);
 }
+
+sf::Vector2f player::returnPosition()
+{
+	return m_location;
+}
+
+sf::Vector2f player::returnAim()
+{
+	return m_mousePos;
+}
+
+void player::fireWeapon(sf::Event t_event, sf::RenderWindow& t_window)
+{
+	m_mousePos = t_window.mapPixelToCoords({ t_event.mouseMove.x, t_event.mouseMove.y });
+}

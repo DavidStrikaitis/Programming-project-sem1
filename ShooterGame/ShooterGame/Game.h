@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include"Globals.h"
 #include"player.h"
+#include"bulletManager.h"
 
 class Game
 {
@@ -31,6 +32,7 @@ private:
 	void setupBackground();
 	
 	void setupFontAndText();
+	void shooting();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
@@ -40,6 +42,10 @@ private:
 	bool m_exitGame; // control exiting game
 
 	player playerOne; // playerCharacter
+	bulletManager m_bulletManager; // manages all interaction with the bullets
+	bool m_shooting{false}; // checks if the player is shooting
+	int m_shootCooldown{ 0 }; // for the time between firing
+	int m_cooldownTime{ 12 }; // time between firing
 };
 
 #endif // !GAME_HPP
