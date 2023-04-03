@@ -13,13 +13,14 @@ public:
 	~player();
 
 	void render(sf::RenderWindow& t_window);
-	void movePlayer();
+	void movePlayer(sf::RectangleShape t_object[]);
 	void setupPlayer();
 	sf::Vector2f returnPosition();
 	sf::Vector2f returnAim();
 	void fireWeapon(sf::Event t_event, sf::RenderWindow& t_window);
 
 private:
+
 	sf::Texture m_texture; // texture for the player character
 	sf::Sprite m_sprite; // sprite for the player character
 

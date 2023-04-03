@@ -29,7 +29,7 @@ void player::render(sf::RenderWindow& t_window)
 /// <summary>
 /// Moves the player and keeps the player within bounds
 /// </summary>
-void player::movePlayer()
+void player::movePlayer(sf::RectangleShape t_object[])
 {
 	sf::Vector2f movement{ 0.f,0.f };
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -60,11 +60,28 @@ void player::movePlayer()
 		(movement.x == m_speed && movement.y == -m_speed) ||
 		(movement.x == -m_speed && movement.y == m_speed))
 	{
-		movement /= 1.5f;
+		movement /= sqrt(2.0f);
 	}
 
 	
 	m_location += movement; // apply the movement
+
+	sf::FloatRect intersection;
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (t_object[i].getGlobalBounds().intersects(m_sprite.getGlobalBounds(), intersection))
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				m_location += sf::Vector2f(intersection.width + m_playerSize.x, 0);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				m_location += sf::Vector2f(-intersection.width - m_playerSize.x, 0);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+				m_location += sf::Vector2f(0, intersection.height + m_playerSize.y);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				m_location += sf::Vector2f(0, -intersection.height - m_playerSize.y);
+		}
+	}
 
 	/// <summary>
 	/// boundary checking

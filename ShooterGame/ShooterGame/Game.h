@@ -12,6 +12,7 @@
 #include"Globals.h"
 #include"player.h"
 #include"bulletManager.h"
+#include"gameProp.h"
 
 class Game
 {
@@ -30,7 +31,7 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	void setupBackground();
-	
+
 	void setupFontAndText();
 	void shooting();
 
@@ -43,6 +44,7 @@ private:
 
 	player playerOne; // playerCharacter
 	bulletManager m_bulletManager; // manages all interaction with the bullets
+	gameProp m_gameProps[5]; // a game prop within the level that is collidable
 	bool m_shooting{false}; // checks if the player is shooting
 	int m_shootCooldown{ 0 }; // for the time between firing
 	int m_cooldownTime{ 12 }; // time between firing

@@ -5,9 +5,6 @@
 /// </summary>
 
 #include "Game.h"
-#include <iostream>
-
-
 
 /// <summary>
 /// default constructor
@@ -21,6 +18,13 @@ Game::Game() :
 {
 	setupFontAndText(); // load font 
 	setupBackground();
+
+	m_gameProps[1].initProp({80,120}, {100,100});
+	m_gameProps[2].initProp({ 120,80 }, { 500,150 });
+	m_gameProps[3].initProp({ 80,60 }, { 300,300 });
+	m_gameProps[4].initProp({ 80,120 }, { 120,550 });
+	m_gameProps[0].initProp({ 80,120 }, { 600,400 });
+
 }
 
 /// <summary>
@@ -121,7 +125,10 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-	playerOne.movePlayer(); // called here for smoother movement
+	sf::RectangleShape rectangles[5];
+	for (int i = 0; i < 5; i++)
+		rectangles[i] = m_gameProps[i].returnRectangle();
+	playerOne.movePlayer(rectangles); // called here for smoother movement
 	m_bulletManager.moveBullets();
 	shooting();
 }
@@ -135,6 +142,8 @@ void Game::render()
 	m_window.draw(m_backgroundSprite);
 	m_window.draw(m_welcomeMessage);
 	m_bulletManager.render(m_window);
+	for (int i = 0; i < 5; i++)
+		m_gameProps[i].render(m_window);
 	playerOne.render(m_window);
 	m_window.display();
 }
