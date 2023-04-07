@@ -7,6 +7,8 @@
 #include"ZombieEnemy.h"
 #include<cstdlib>
 #include<ctime>
+#include"Bullet.h"
+#include"bulletManager.h"
 
 class ZombieManager
 {
@@ -18,6 +20,7 @@ public:
 	int getAmountAlive();
 	void moveZombiesTowardsPlayer(sf::Vector2f t_location);
 	void initialiseNewZombie();
+	void damageZombies(sf::FloatRect bullets[], int bulletDamage[], int t_amountOfBullets, bulletManager& t_bulletManager);
 
 private:
 	ZombieEnemy zombies[10]; // array of zombies

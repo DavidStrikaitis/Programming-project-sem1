@@ -1,5 +1,4 @@
 #include "bulletManager.h"
-#include"ZombieEnemy.h"
 
 bulletManager::bulletManager()
 {
@@ -7,7 +6,7 @@ bulletManager::bulletManager()
 
 bulletManager::~bulletManager()
 {
-	std::cout << "Destroyed bullet manager" << std::endl;
+	//std::cout << "Destroyed bullet manager" << std::endl;
 }
 
 void bulletManager::spawnNewBullet(player& t_player)
@@ -39,6 +38,9 @@ void bulletManager::render(sf::RenderWindow& t_window)
 	}
 }
 
+
+
+
 void bulletManager::moveBullets()
 {
 	for (int i = 0; i < bulletAmount; i++)
@@ -63,6 +65,32 @@ void bulletManager::deactivateBullets(sf::RectangleShape props[])
 			}
 		}
 	}
+}
+
+void bulletManager::deactivateBullets(int t_bulletDeactivateable)
+{
+	bullets[t_bulletDeactivateable].deactivateBullet();
+}
+
+void bulletManager::copyBullets(sf::FloatRect bulletBounds[])
+{
+	for (int i = 0; i < bulletAmount; i++)
+	{
+		bulletBounds[i] = bullets[i].returnBulletBounds();
+	}
+}
+
+void bulletManager::copyDamage(int bulletDamage[])
+{
+	for (int i = 0; i < bulletAmount; i++)
+	{
+		bulletDamage[i] = bullets[i].returnBulletDamage();
+	}
+}
+
+int bulletManager::returnBulletAmount()
+{
+	return bulletAmount;
 }
 
 // ************************************************

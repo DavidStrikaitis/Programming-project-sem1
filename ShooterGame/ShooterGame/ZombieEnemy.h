@@ -32,8 +32,12 @@ private:
 	float m_speed{ 3.0f }; // speed of the enemies
 	sf::Vector2f m_displacement; // direction the zombie must travel in
 	int m_health{ 0 }; // amount of health the enemy zombie has
+	int m_maxHealth;   // maxiumum amount of health
 	bool m_inLevel{ false }; // check if the zombie is in the level bounds,
 							 //this is done so that it only walks straight after spawning
+
+	sf::RectangleShape m_maxHealthBar; // full health bar displayed behind actual health
+	sf::RectangleShape m_healthBar;    // health bar that you can see
 
 };
 

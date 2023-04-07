@@ -112,3 +112,18 @@ void ZombieManager::initialiseNewZombie()
 		
 	}
 }
+
+void ZombieManager::damageZombies(sf::FloatRect bullets[], int bulletDamage[], int t_amountOfBullets, bulletManager& t_bulletManager)
+{
+	for (int i = 0; i < t_amountOfBullets; i++)
+	{
+		for (int u = 0; u < m_zombieAmount; u++)
+		{
+			if (zombies[u].getBody().getGlobalBounds().intersects(bullets[i]))
+			{
+				t_bulletManager.deactivateBullets(i);
+				zombies[u].applyDamage(bulletDamage[i]);
+			}
+		}
+	}
+}

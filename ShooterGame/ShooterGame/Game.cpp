@@ -138,6 +138,14 @@ void Game::update(sf::Time t_deltaTime)
 	m_bulletManager.deactivateBullets(rectangles);
 	m_zombieManager.moveZombiesTowardsPlayer(playerOne.returnPosition());
 	shooting();
+
+	sf::FloatRect bulletBounds[20];
+	int bulletDamages[20];
+	m_bulletManager.copyBullets(bulletBounds);
+	m_bulletManager.copyDamage(bulletDamages);
+	m_zombieManager.damageZombies(bulletBounds, bulletDamages, m_bulletManager.returnBulletAmount(), m_bulletManager);
+
+
 }
 
 /// <summary>

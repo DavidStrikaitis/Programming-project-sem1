@@ -11,6 +11,7 @@ void Bullet::init(sf::Vector2f t_startPos, sf::Vector2f t_aim)
 	m_displacement = t_aim - m_location;
 	m_displacement /= std::sqrtf(m_displacement.x * m_displacement.x + m_displacement.y * m_displacement.y);
 	m_displacement = m_displacement * m_speed;
+	m_bulletDamage = (rand() % 16) + 5;
 	m_active = true;
 }
 
@@ -20,7 +21,7 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
-	std::cout << "Bullet has been destroyed" << std::endl;
+	//std::cout << "Bullet has been destroyed" << std::endl;
 }
 
 void Bullet::render(sf::RenderWindow& t_window)
@@ -46,10 +47,16 @@ bool Bullet::getActive()
 
 void Bullet::deactivateBullet()
 {
+	m_body.setPosition({ -300,-300 });
 	m_active = false;
 }
 
 sf::FloatRect Bullet::returnBulletBounds()
 {
 	return m_body.getGlobalBounds();
+}
+
+int Bullet::returnBulletDamage()
+{
+	return m_bulletDamage;
 }

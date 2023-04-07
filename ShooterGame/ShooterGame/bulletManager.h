@@ -17,6 +17,11 @@ public:
 	void moveBullets();
 
 	void deactivateBullets(sf::RectangleShape props[]);
+	void deactivateBullets(int t_bulletDeactivateable);
+	void copyBullets(sf::FloatRect bulletBounds[]);
+	void copyDamage(int bulletDamage[]);
+
+	int returnBulletAmount();
 
 private:
 	Bullet bullets[20]; // array for bullets
