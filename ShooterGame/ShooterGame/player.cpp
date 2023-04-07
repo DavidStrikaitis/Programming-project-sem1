@@ -66,22 +66,7 @@ void player::movePlayer(sf::RectangleShape t_object[])
 	
 	m_location += movement; // apply the movement
 
-	sf::FloatRect intersection;
 
-	for (int i = 0; i < 5; i++)
-	{
-		if (t_object[i].getGlobalBounds().intersects(m_sprite.getGlobalBounds(), intersection))
-		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				m_location += sf::Vector2f(intersection.width + m_playerSize.x, 0);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				m_location += sf::Vector2f(-intersection.width - m_playerSize.x, 0);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				m_location += sf::Vector2f(0, intersection.height + m_playerSize.y);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				m_location += sf::Vector2f(0, -intersection.height - m_playerSize.y);
-		}
-	}
 
 	/// <summary>
 	/// boundary checking
@@ -103,6 +88,22 @@ void player::movePlayer(sf::RectangleShape t_object[])
 		m_location.y = SCREEN_HEIGHT - m_playerSize.y - 1.f;
 	}
 	m_sprite.setPosition(m_location);
+	sf::FloatRect intersection;
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (t_object[i].getGlobalBounds().intersects(m_sprite.getGlobalBounds(), intersection))
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				m_location += sf::Vector2f(intersection.width + 3.0f, 0);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				m_location += sf::Vector2f(-intersection.width - 3.0f, 0);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+				m_location += sf::Vector2f(0, intersection.height + 3.0f);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				m_location += sf::Vector2f(0, -intersection.height - 3.0f);
+		}
+	}
 }
 
 /// <summary>

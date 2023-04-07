@@ -1,4 +1,5 @@
 #include "bulletManager.h"
+#include"ZombieEnemy.h"
 
 bulletManager::bulletManager()
 {
@@ -44,6 +45,23 @@ void bulletManager::moveBullets()
 	{
 		if (bullets[i].getActive())
 			bullets[i].moveBullet();
+	}
+}
+
+void bulletManager::deactivateBullets(sf::RectangleShape props[])
+{
+	for (int i = 0; i < bulletAmount; i++)
+	{
+		if (!bullets[i].getActive())
+			continue;
+		for (int u = 0; u < 5; u++)
+		{
+			if (props[u].getGlobalBounds().intersects(bullets[i].returnBulletBounds()))
+			{
+				bullets[i].deactivateBullet();
+				break;
+			}
+		}
 	}
 }
 

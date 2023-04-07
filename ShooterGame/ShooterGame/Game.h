@@ -13,6 +13,7 @@
 #include"player.h"
 #include"bulletManager.h"
 #include"gameProp.h"
+#include"ZombieManager.h"
 
 class Game
 {
@@ -48,6 +49,8 @@ private:
 	bool m_shooting{false}; // checks if the player is shooting
 	int m_shootCooldown{ 0 }; // for the time between firing
 	int m_cooldownTime{ 12 }; // time between firing
+
+	ZombieManager m_zombieManager; // manages all interaction with the zombie
 };
 
 #endif // !GAME_HPP

@@ -16,6 +16,8 @@ public:
 	void render(sf::RenderWindow& t_window);
 	void moveBullets();
 
+	void deactivateBullets(sf::RectangleShape props[]);
+
 private:
 	Bullet bullets[20]; // array for bullets
 	const int MAX_BULLETS{ 20 };

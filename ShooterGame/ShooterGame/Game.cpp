@@ -20,11 +20,16 @@ Game::Game() :
 	setupBackground();
 
 	m_gameProps[1].initProp({80,120}, {100,100});
-	m_gameProps[2].initProp({ 120,80 }, { 500,150 });
-	m_gameProps[3].initProp({ 80,60 }, { 300,300 });
-	m_gameProps[4].initProp({ 80,120 }, { 120,550 });
+	m_gameProps[2].initProp({ 120,40 }, { 500,100 });
+	m_gameProps[3].initProp({ 80,60 }, { 400,300 });
+	m_gameProps[4].initProp({ 100,60 }, { 120,400 });
 	m_gameProps[0].initProp({ 80,120 }, { 600,400 });
 
+	m_zombieManager.initialiseNewZombie();
+	m_zombieManager.initialiseNewZombie();
+	m_zombieManager.initialiseNewZombie();
+	m_zombieManager.initialiseNewZombie();
+	
 }
 
 /// <summary>
@@ -130,6 +135,8 @@ void Game::update(sf::Time t_deltaTime)
 		rectangles[i] = m_gameProps[i].returnRectangle();
 	playerOne.movePlayer(rectangles); // called here for smoother movement
 	m_bulletManager.moveBullets();
+	m_bulletManager.deactivateBullets(rectangles);
+	m_zombieManager.moveZombiesTowardsPlayer(playerOne.returnPosition());
 	shooting();
 }
 
@@ -144,6 +151,7 @@ void Game::render()
 	m_bulletManager.render(m_window);
 	for (int i = 0; i < 5; i++)
 		m_gameProps[i].render(m_window);
+	m_zombieManager.render(m_window);
 	playerOne.render(m_window);
 	m_window.display();
 }

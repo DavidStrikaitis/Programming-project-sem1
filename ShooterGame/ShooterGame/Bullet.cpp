@@ -2,7 +2,7 @@
 
 void Bullet::init(sf::Vector2f t_startPos, sf::Vector2f t_aim)
 {
-	std::cout << "New Bullet created" << std::endl;
+	//std::cout << "New Bullet created" << std::endl;
 	m_body.setRadius(static_cast<float>(BULLET_SIZE));
 	m_body.setFillColor(sf::Color::Red);
 	m_body.setPosition(t_startPos);
@@ -47,4 +47,9 @@ bool Bullet::getActive()
 void Bullet::deactivateBullet()
 {
 	m_active = false;
+}
+
+sf::FloatRect Bullet::returnBulletBounds()
+{
+	return m_body.getGlobalBounds();
 }

@@ -39,6 +39,12 @@
     <ClCompile Include="gameProp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ZombieEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombieManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -57,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameProp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

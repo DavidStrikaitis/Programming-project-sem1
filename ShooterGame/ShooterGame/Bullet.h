@@ -17,6 +17,8 @@ public:
 	void moveBullet();
 	bool getActive();
 	void deactivateBullet();
+	sf::FloatRect returnBulletBounds();
+
 private:
 	const unsigned int BULLET_SIZE{ 2 }; // total size of the bullet
 	sf::Vector2f m_location; // current location of the bullet
