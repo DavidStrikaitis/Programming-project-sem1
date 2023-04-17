@@ -25,6 +25,7 @@
     <ClCompile Include="gameProp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="shooterEnemy.cpp" />
     <ClCompile Include="ZombieEnemy.cpp" />
     <ClCompile Include="ZombieManager.cpp" />
   </ItemGroup>
@@ -35,6 +36,7 @@
     <ClInclude Include="gameProp.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="shooterEnemy.h" />
     <ClInclude Include="ZombieEnemy.h" />
     <ClInclude Include="ZombieManager.h" />
   </ItemGroup>
