@@ -136,7 +136,9 @@ void Game::update(sf::Time t_deltaTime)
 	playerOne.movePlayer(rectangles); // called here for smoother movement
 	m_bulletManager.moveBullets();
 	m_bulletManager.deactivateBullets(rectangles);
-	m_zombieManager.moveZombiesTowardsPlayer(playerOne.returnPosition());
+	bool applyDamageToPlayer = m_zombieManager.moveZombiesTowardsPlayer(playerOne.returnPosition());
+	if (applyDamageToPlayer)
+		playerOne.damagePlayer();
 	shooting();
 
 	sf::FloatRect bulletBounds[20];

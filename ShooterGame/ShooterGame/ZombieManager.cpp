@@ -28,7 +28,7 @@ int ZombieManager::getAmountAlive()
 	return alive;
 }
 
-void ZombieManager::moveZombiesTowardsPlayer(sf::Vector2f t_location)
+bool ZombieManager::moveZombiesTowardsPlayer(sf::Vector2f t_location)
 {
 	m_playerLoc = t_location;
 	for (int i = 0; i < m_zombieAmount; i++)
@@ -62,12 +62,17 @@ void ZombieManager::moveZombiesTowardsPlayer(sf::Vector2f t_location)
 	}
 #endif // 0
 
-
+	bool damaged = false;
 	for (int i = 0; i < m_zombieAmount; i++)
 	{
-		if(zombies[i].getAlive())
-			zombies[i].moveZombie();
+		if (zombies[i].getAlive())
+		{
+			bool hurtNow = zombies[i].moveZombie();
+			if (!damaged)
+				damaged = hurtNow;
+		}
 	}
+	return damaged;
 }
 
 void ZombieManager::initialiseNewZombie()

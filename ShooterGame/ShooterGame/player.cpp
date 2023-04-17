@@ -71,21 +71,21 @@ void player::movePlayer(sf::RectangleShape t_object[])
 	/// <summary>
 	/// boundary checking
 	/// </summary>
-	if (m_location.x <= 0)
+	if (m_location.x <= 0 + m_playerSize.x / 2)
 	{
-		m_location.x = 1.f;
+		m_location.x = 1.f + m_playerSize.x / 2;
 	}
-	else if (m_location.x >= SCREEN_WIDTH - m_playerSize.x)
+	else if (m_location.x >= SCREEN_WIDTH - m_playerSize.x / 2)
 	{
-		m_location.x = SCREEN_WIDTH - m_playerSize.x - 1.f;
+		m_location.x = SCREEN_WIDTH - m_playerSize.x / 2 - 1.f;
 	}
-	if (m_location.y <= 0)
+	if (m_location.y <= 0 + m_playerSize.y / 2)
 	{
-		m_location.y = 1.f;
+		m_location.y = 1.f + m_playerSize.y / 2;
 	}
-	else if (m_location.y >= SCREEN_HEIGHT - m_playerSize.y)
+	else if (m_location.y >= SCREEN_HEIGHT - m_playerSize.y / 2)
 	{
-		m_location.y = SCREEN_HEIGHT - m_playerSize.y - 1.f;
+		m_location.y = SCREEN_HEIGHT - m_playerSize.y / 2 - 1.f;
 	}
 	m_sprite.setPosition(m_location);
 	sf::FloatRect intersection;
@@ -117,6 +117,7 @@ void player::setupPlayer()
 	}
 	m_sprite.setTexture(m_texture);
 	m_sprite.setTextureRect(sf::IntRect(12, 13, 57, 66));
+	m_sprite.setOrigin(28.5f, 33.f);
 	m_sprite.setPosition(m_location);
 }
 
@@ -133,4 +134,13 @@ sf::Vector2f player::returnAim()
 void player::fireWeapon(sf::Event t_event, sf::RenderWindow& t_window)
 {
 	m_mousePos = t_window.mapPixelToCoords({ t_event.mouseMove.x, t_event.mouseMove.y });
+}
+
+void player::damagePlayer()
+{
+	m_health -= 1;
+	if (m_health <= 0)
+	{
+		m_sprite.setColor(sf::Color::Red);
+	}
 }

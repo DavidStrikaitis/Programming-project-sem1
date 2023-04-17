@@ -27,6 +27,6 @@ private:
 	sf::Vector2f m_displacement; // speed and direction the bullet will travel at
 	float m_speed{ 4 }; // speed the bullet will travel at
 	bool m_active{ false }; // check for if the object can be replaced
-	int m_bulletDamage; // amount of damage the bullet does
+	int m_bulletDamage{ 0 }; // amount of damage the bullet does
 };
 

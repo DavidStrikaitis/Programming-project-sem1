@@ -18,6 +18,7 @@ public:
 	sf::Vector2f returnPosition();
 	sf::Vector2f returnAim();
 	void fireWeapon(sf::Event t_event, sf::RenderWindow& t_window);
+	void damagePlayer();
 
 private:
 
@@ -28,5 +29,6 @@ private:
 	sf::Vector2f m_location{ 200,100 }; // location of the player
 	sf::Vector2f m_playerSize{ 57,62 }; // the size of the player used for screen bounds check
 	sf::Vector2f m_mousePos; // position of the mouse when last firing the weapon
+	int m_health{ 10 };       // amount of health the player has
 };
 

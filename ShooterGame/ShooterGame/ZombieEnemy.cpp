@@ -26,6 +26,7 @@ void ZombieEnemy::initZombie(sf::Vector2f t_spawn)
 	m_healthBar.setPosition(m_location);
 	m_health = (rand() % 80) + 20;
 	m_maxHealth = m_health;
+	m_speed = static_cast<float>((rand() % 3) + 2);
 	m_alive = true;
 }
 
@@ -52,17 +53,20 @@ void ZombieEnemy::calculateDirection(sf::Vector2f t_target)
 	m_displacement = m_displacement * m_speed;
 }
 
-void ZombieEnemy::moveZombie()
+bool ZombieEnemy::moveZombie()
 {
-	if (m_location.x <= m_targetLocation.x + 10.0f && m_location.x >= m_targetLocation.x - 10.0f &&
-		m_location.y <= m_targetLocation.y + 10.0f && m_location.y >= m_targetLocation.y - 10.0f)
+	bool damagePlayer = false;
+	if (m_location.x <= m_targetLocation.x + 30.0f && m_location.x >= m_targetLocation.x - 30.0f &&
+		m_location.y <= m_targetLocation.y + 40.0f && m_location.y >= m_targetLocation.y - 40.0f)
 	{
 		m_displacement = m_displacement * -25.0f;
+		damagePlayer = true;
 	}
 	m_location += m_displacement;
 	m_body.setPosition(m_location);
 	m_maxHealthBar.setPosition(m_location);
 	m_healthBar.setPosition(m_location);
+	return damagePlayer;
 }
 
 sf::Vector2f ZombieEnemy::getPosition()
@@ -77,19 +81,19 @@ sf::RectangleShape ZombieEnemy::getBody()
 
 void ZombieEnemy::setspeed(int t_speed)
 {
-	m_speed = t_speed;
+	m_speed = static_cast<float>(t_speed);
 }
 
 int ZombieEnemy::returnSpeed()
 {
-	return m_speed;
+	return static_cast<int>(m_speed);
 }
 
 void ZombieEnemy::applyDamage(int t_bulletDamage)
 {
 	m_health -= t_bulletDamage;
 	std::cout << m_health << std::endl;
-	float x = m_health/m_maxHealth;
+	float x = (static_cast<float>(m_health)/m_maxHealth);
 	m_healthBar.setScale(sf::Vector2f( x,1 ));
 
 	if (m_health <= 0)

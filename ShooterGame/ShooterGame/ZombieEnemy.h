@@ -16,7 +16,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 	bool getAlive();
 	void calculateDirection(sf::Vector2f t_target);
-	void moveZombie();
+	bool moveZombie();
 	sf::Vector2f getPosition();
 	sf::RectangleShape getBody();
 	void setspeed(int t_speed);
@@ -29,10 +29,10 @@ private:
 
 	bool m_alive{ false }; // check if the zombie is alive
 	sf::RectangleShape m_body; // the visible part of the enemy
-	float m_speed{ 3.0f }; // speed of the enemies
+	float m_speed{ 0 }; // speed of the enemies
 	sf::Vector2f m_displacement; // direction the zombie must travel in
 	int m_health{ 0 }; // amount of health the enemy zombie has
-	int m_maxHealth;   // maxiumum amount of health
+	int m_maxHealth{ 0 };   // maxiumum amount of health
 	bool m_inLevel{ false }; // check if the zombie is in the level bounds,
 							 //this is done so that it only walks straight after spawning
 

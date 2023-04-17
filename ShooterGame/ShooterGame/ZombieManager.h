@@ -18,7 +18,7 @@ public:
 
 	void render(sf::RenderWindow& t_window);
 	int getAmountAlive();
-	void moveZombiesTowardsPlayer(sf::Vector2f t_location);
+	bool moveZombiesTowardsPlayer(sf::Vector2f t_location);
 	void initialiseNewZombie();
 	void damageZombies(sf::FloatRect bullets[], int bulletDamage[], int t_amountOfBullets, bulletManager& t_bulletManager);
 
